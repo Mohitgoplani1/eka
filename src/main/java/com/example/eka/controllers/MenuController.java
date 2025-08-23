@@ -30,9 +30,16 @@ public class MenuController {
     public List<MenuItem> getItems(){
         return items.findAll();
     }
-
+    @GetMapping("/categories")
+    public List<String> getAllCategories(){
+        List<MenuItem> all=items.findAll();
+        List<String> categories=new ArrayList<>();
+        all.stream().forEach(i->categories.add(i.getCategory()));
+        return categories;
+    }
     @GetMapping("/{category}")
     public List<MenuItem> getByCategory(@PathVariable String category){
-        return items.findByCategory(category);
+        List<MenuItem> itemsInCategory=items.findByCategory(category);
+        return itemsInCategory.stream().filter(c->c.isAvailability()==true).toList();
     }
 }
