@@ -26,6 +26,10 @@ public class MenuController {
         else return "Item Already Exists";
     }
 
+    @GetMapping("/{category}/{id}")
+    public MenuItem getById(@PathVariable String category,@PathVariable String id){
+        return items.findById(id).orElse(null);
+    }
     @GetMapping("/all")
     public List<MenuItem> getItems(){
         return items.findAll();
