@@ -9,18 +9,28 @@ public class Customer {
     @Id
     private String id;
     private String name;
+    private String address;
     private String email;
     private String password;
     private String phoneNumber;
     private String role;
 
-    public Customer(String id, String phoneNumber, String password, String email, String name, String role) {
+    public Customer(String id, String name, String address, String email, String password, String phoneNumber, String role) {
         this.id = id;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
-        this.email = email;
         this.name = name;
-        this.role=role;
+        this.address = address;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getRole() {

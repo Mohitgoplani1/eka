@@ -60,7 +60,7 @@ public class CartController {
         return cartRepository.save(cart);
     }
     @PostMapping("/delete/{customerId}/{itemId}/{quantity}")
-    public Cart deleteCart(@PathVariable String customerId,@PathVariable String itemId,@PathVariable int quantity){
+    public Cart deleteItem(@PathVariable String customerId,@PathVariable String itemId,@PathVariable int quantity){
         Customer customer=customers.findById(customerId).orElse(null);
         if(customer==null){
             throw new RuntimeException("Customer not found ");
@@ -93,5 +93,9 @@ public class CartController {
             }
         }
         return cartRepository.save(cart);
+    }
+    @PostMapping("/checkout/{customerId}")
+    public void checkout(@PathVariable String customerId){
+        cartRepository.delete(cartRepository.findByCustomerId(customerId));
     }
 }

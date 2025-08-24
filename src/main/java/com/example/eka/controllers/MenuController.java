@@ -32,7 +32,8 @@ public class MenuController {
     }
     @GetMapping("/all")
     public List<MenuItem> getItems(){
-        return items.findAll();
+        List<MenuItem> all=items.findAll();
+        return all.stream().filter(i->i.isAvailability()==true).toList();
     }
     @GetMapping("/categories")
     public List<String> getAllCategories(){
