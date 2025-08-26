@@ -47,4 +47,9 @@ public class MenuController {
         List<MenuItem> itemsInCategory=items.findByCategory(category);
         return itemsInCategory.stream().filter(c->c.isAvailability()==true).toList();
     }
+    @PostMapping("/delete/{id}")
+    public void deleteItem(@PathVariable String id){
+        MenuItem i= items.findById(id).orElse(null);
+        items.delete(i);
+    }
 }
